@@ -1,9 +1,10 @@
 import express from 'express'
-import { createCourse } from './routes'
 
 
 const app = express()
 
-app.get('/', createCourse)
+
+app.get('/', (request, response) => response.json({ error: "ahhh Maycon" }))
+
 
 app.listen(3333)
