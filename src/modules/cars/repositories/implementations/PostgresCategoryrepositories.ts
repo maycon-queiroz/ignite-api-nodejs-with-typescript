@@ -1,5 +1,5 @@
-import { Category } from '../model/Category';
-import { ICategoryRepository, ICreateCategoryDTO } from './ICategoryRepository';
+import { Category } from '../../model/Category';
+import { ICategoryRepository, ICreateCategoryDTO } from '../ICategoryRepository';
 
 class PostgresCategoryRepositories implements ICategoryRepository {
   list(): Category[] {
