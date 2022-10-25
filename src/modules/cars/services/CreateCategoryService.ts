@@ -9,7 +9,7 @@ class CreateCategoryService {
 
   constructor(private categoriesRepository: ICategoryRepository) { }
 
-  execute({ name, description }: IRequest) {
+  execute({ name, description }: IRequest): void {
     const categoryAlreadyExists = this.categoriesRepository.findByName(name);
 
     if (categoryAlreadyExists) {
