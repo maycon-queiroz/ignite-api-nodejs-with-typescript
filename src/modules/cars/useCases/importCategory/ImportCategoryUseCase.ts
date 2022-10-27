@@ -1,3 +1,4 @@
+import { ICategoryRepository } from '../../repositories/ICategoryRepository';
 import { parse } from 'csv-parse';
 import fs from 'fs';
 
@@ -6,6 +7,7 @@ interface IImportCategory {
   description: string;
 }
 class ImportCategoryUseCase {
+  constructor(private categoriesRepository: ICategoryRepository) { }
 
   async loadCategories(file: Express.Multer.File): Promise<IImportCategory[]> {
     return new Promise((resolve, reject) => {
@@ -24,9 +26,18 @@ class ImportCategoryUseCase {
         .on("error", (error) => reject(error));
     })
   }
+
   async execute(file: Express.Multer.File): Promise<void> {
     const categories = await this.loadCategories(file);
-    console.log(categories);
+    categories.map(async category => {
+      const { name, description } = category;
+
+      const existCategory = this.categoriesRepository.findByName(name);
+
+      if (!existCategory) {
+        this.categoriesRepository.create({ name, description });
+      }
+    })
   }
 }
 
