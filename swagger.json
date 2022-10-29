@@ -82,6 +82,41 @@
           }
         }
       }
+    },
+    "/categories/import": {
+      "post": {
+        "tags": [
+          "Categories"
+        ],
+        "summary": "Import many categories",
+        "description": "Import categories from file.csv",
+        "requestBody": {
+          "content": {
+            "multipart/form-data": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "file": {
+                    "type": "string",
+                    "format": "binary"
+                  }
+                }
+              },
+              "example": {
+                "file": "formData"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Created"
+          },
+          "400": {
+            "description": "Category already exists"
+          }
+        }
+      }
     }
   }
 }
