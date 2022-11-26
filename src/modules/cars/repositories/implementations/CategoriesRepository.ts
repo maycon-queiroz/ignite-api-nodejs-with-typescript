@@ -3,9 +3,10 @@
 import { Category } from '../../entities/Category';
 import { ICategoryRepository, ICreateCategoryDTO } from '../ICategoryRepository';
 import { AppDataSource } from '../../../../database/data-source';
+import { Repository } from 'typeorm';
 
 class CategoriesRepository implements ICategoryRepository {
-  private repository
+  private repository: Repository<Category>;
   constructor() {
     this.repository = AppDataSource.getRepository(Category)
   }
