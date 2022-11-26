@@ -1,44 +1,34 @@
+
+
 import { Category } from '../../entities/Category';
 import { ICategoryRepository, ICreateCategoryDTO } from '../ICategoryRepository';
-
+import { AppDataSource } from '../../../../database/data-source';
 
 class CategoriesRepository implements ICategoryRepository {
-
-  private categories: Category[];
-
-  private static INSTANCE: CategoriesRepository
-
-  private constructor() {
-    this.categories = [];
+  private repository
+  constructor() {
+    this.repository = AppDataSource.getRepository(Category)
   }
 
-  static getInstance(): CategoriesRepository {
-    if (!CategoriesRepository.INSTANCE) {
-      CategoriesRepository.INSTANCE = new CategoriesRepository();
-    }
-
-    return CategoriesRepository.INSTANCE;
-  }
-
-  create({ name, description }: ICreateCategoryDTO): void {
-    const category = new Category();
-
-    Object.assign(category, {
+  async create({ name, description }: ICreateCategoryDTO): Promise<void> {
+    const category = this.repository.create({
       name,
       description,
-      created_at: new Date(),
     });
 
-    this.categories.push(category);
+    await this.repository.save(category)
   }
 
-  list(): Category[] {
-    return this.categories;
+  async list(): Promise<Category[]> {
+    return await this.repository.find();
   }
 
-  findByName(name: string): Category {
-    const category = this.categories.find(category => category.name === name)
-    return category;
+  async findByName(name: string): Promise<Category> {
+    return await this.repository.findOne({
+      where: {
+        name
+      }
+    })
   }
 }
 
