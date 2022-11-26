@@ -2,14 +2,19 @@ import express from 'express';
 import swaggerUi from "swagger-ui-express"
 
 import { router } from './routes';
-import swaggerFiler from "../swagger.json";
+import swaggerFiler from "./swagger.json";
 
-const app = express();
+import { AppDataSource } from './database/data-source';
 
-app.use(express.json());
+AppDataSource.initialize().then(async () => {
+  const app = express();
 
-app.use("/api-doc", swaggerUi.serve, swaggerUi.setup(swaggerFiler));
+  app.use(express.json());
 
-app.use(router);
+  app.use("/api-doc", swaggerUi.serve, swaggerUi.setup(swaggerFiler));
 
-app.listen(3333);
+  app.use(router);
+
+  return app.listen(3333);
+
+}).catch(error => console.log(error));
