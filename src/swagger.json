@@ -2,9 +2,10 @@
   "openapi": "3.0.0",
   "info": {
     "title": "RentalX Documentation",
-    "description": "This is an Api Rest",
+    "description": "This is a Rest API of the application about user registration",
     "version": "1.0.0",
     "contact": {
+      "name": "API Support",
       "email": "fmaycon@gmail.com"
     }
   },
@@ -39,10 +40,27 @@
         },
         "responses": {
           "201": {
-            "description": "Created"
+            "description": "Category Created",
+            "content": {
+              "application/json": {
+                "example": {
+                  "id": "a4b85e3d-f17c-479b-a3ff-057b82a582e0",
+                  "name": "category name sample",
+                  "description": "description category name sample",
+                  "created_at": "2022-11-26T01:21:54.806Z"
+                }
+              }
+            }
           },
           "400": {
-            "description": "Category already exists"
+            "description": "Category already exists",
+            "content": {
+              "application/json": {
+                "example": {
+                  "error": "User Already Exists"
+                }
+              }
+            }
           }
         }
       },
@@ -50,8 +68,8 @@
         "tags": [
           "Categories"
         ],
-        "summary": "list all categories",
-        "description": "to list categories",
+        "summary": "List categories",
+        "description": "List All categories",
         "responses": {
           "200": {
             "description": "success",
