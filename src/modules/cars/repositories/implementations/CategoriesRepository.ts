@@ -7,6 +7,7 @@ import { Repository } from 'typeorm';
 
 class CategoriesRepository implements ICategoryRepository {
   private repository: Repository<Category>;
+
   constructor() {
     this.repository = AppDataSource.getRepository(Category)
   }
