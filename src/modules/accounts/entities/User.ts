@@ -8,7 +8,8 @@ export class User {
 
   @Column()
   name: string
-  @Column()
+
+  @Column({ unique: true })
   username: string
 
   @Column()
@@ -20,8 +21,8 @@ export class User {
   @Column()
   drive_license: string
 
-  @Column({ type: "boolean" })
-  admin: boolean
+  @Column({ type: "boolean", default: false })
+  isAdmin: boolean
 
   @CreateDateColumn()
   created_at: Date
