@@ -10,11 +10,11 @@ class CreateUserController {
 
     try {
       await createUserUseCase.execute({ name, username, email, password, drive_license });
+      return response.status(201).send();
     } catch (error) {
       return response.status(400).json({ error: error.message });
     }
 
-    return response.status(201).send();
   }
 }
 
