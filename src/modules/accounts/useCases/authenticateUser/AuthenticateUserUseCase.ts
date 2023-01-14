@@ -27,13 +27,13 @@ class AuthenticateUserUseCase {
     const user = await this.userRepository.findByEmail(email);
 
     if (!user) {
-      throw new Error("Username or Password not found");
+      throw new Error("Email or Password not found");
     }
 
     const passwordMatch = await compare(password, user.password)
 
     if (!passwordMatch) {
-      throw new Error("Username or Password not found");
+      throw new Error("Email or Password not found");
     }
 
     const token = sign({}, "d6919312cac7020e8822b612223a3cc7", {
