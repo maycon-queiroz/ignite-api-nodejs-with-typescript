@@ -1,4 +1,5 @@
 import { inject, injectable } from "tsyringe";
+import { AppError } from "../../../../errors/AppError";
 
 import { IDataUserDTO } from "../../dtos/IDataUserDTO";
 import { IUserRepository } from "../../repositories/IUserRepository";
@@ -15,7 +16,7 @@ class CreateUserUseCase {
     const userAlreadyExists = await this.userRepository.findByEmail(email);
 
     if (userAlreadyExists) {
-      throw new Error("User Already Exists");
+      throw new AppError("User Already Exists", 403);
     }
 
     await this.userRepository.create({
