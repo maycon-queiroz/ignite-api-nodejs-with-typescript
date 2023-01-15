@@ -8,8 +8,6 @@ import { ISpecificationRepository } from '../../modules/cars/repositories/ISpeci
 import { UserRepository } from '../../modules/accounts/repositories/implementations/UserRepository';
 import { IUserRepository } from '../../modules/accounts/repositories/IUserRepository'
 
-// import { AuthenticateUserUseCase } from '../../modules/accounts/useCases/authenticateUser/AuthenticateUserUseCase';
-
 container.registerSingleton<ICategoryRepository>(
   "CategoriesRepository", CategoriesRepository
 )
@@ -21,8 +19,3 @@ container.registerSingleton<ISpecificationRepository>(
 container.registerSingleton<IUserRepository>(
   "UserRepository", UserRepository
 )
-
-// container.registerSingleton<AuthenticateUserUseCase>(
-//   "AuthenticateUserUseCase", AuthenticateUserUseCase
-// )
-
