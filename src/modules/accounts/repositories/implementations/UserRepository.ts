@@ -8,6 +8,7 @@ import { AppDataSource } from '../../../../database/data-source';
 
 
 class UserRepository implements IUserRepository {
+
   private repository: Repository<User>;
 
   constructor() {
@@ -16,6 +17,12 @@ class UserRepository implements IUserRepository {
 
   async findByEmail(email: string): Promise<User> {
     const user = this.repository.findOne({ where: { email } });
+
+    return user;
+  }
+
+  async findById(id: string) {
+    const user = this.repository.findOne({ where: { id } });
 
     return user;
   }

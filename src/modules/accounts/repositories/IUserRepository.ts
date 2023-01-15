@@ -3,6 +3,7 @@ import { User } from "../entities/User"
 
 interface IUserRepository {
   findByEmail(email: string): Promise<User>
+  findById(email: string): Promise<User>
   create(dataUser: IDataUserDTO): Promise<void>
 }
 
