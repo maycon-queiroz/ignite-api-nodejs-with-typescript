@@ -6,7 +6,6 @@ import { IUserRepository } from "../IUserRepository";
 import { User } from '../../entities/User'
 import { AppDataSource } from '../../../../database/data-source';
 
-
 class UserRepository implements IUserRepository {
 
   private repository: Repository<User>;
@@ -27,7 +26,7 @@ class UserRepository implements IUserRepository {
     return user;
   }
 
-  async create({ name, username, email, password, drive_license }: IDataUserDTO): Promise<void> {
+  async create({ name, username, email, password, drive_license, avatar, id }: IDataUserDTO): Promise<void> {
 
     const passwordHash = await hash(password, 8);
 
@@ -36,7 +35,9 @@ class UserRepository implements IUserRepository {
       username,
       email,
       password: passwordHash,
-      drive_license
+      drive_license,
+      avatar,
+      id
     });
 
     await this.repository.save(user);

@@ -4,7 +4,9 @@ interface IDataUserDTO {
   email: string,
   password: string,
   isAdmin?: boolean,
-  drive_license: string
+  drive_license: string,
+  id?: string
+  avatar?: string,
 }
 
 export { IDataUserDTO }
