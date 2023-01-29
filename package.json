@@ -6,7 +6,8 @@
   "license": "MIT",
   "scripts": {
     "dev": "ts-node-dev --inspect --transpile-only --ignore-watch node_modules --respawn src/server.ts",
-    "migration:generate": "typeorm-ts-node-commonjs migration:generate -d ./src/database/data-source.ts  ./src/database/migrations/default",
+    "migration:generate": "typeorm-ts-node-commonjs migration:generate -d ./src/database/data-source.ts ",
+    "migration:create": "typeorm-ts-node-commonjs migration:create -d ./src/database/data-source.ts ",
     "migration:run": "typeorm-ts-node-commonjs migration:run -d ./src/database/data-source.ts ",
     "migration:revert": "typeorm-ts-node-commonjs migration:revert -d ./src/database/data-source.ts "
   },
